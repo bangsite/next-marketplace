@@ -1,9 +1,9 @@
-import React from 'react'
+import Link from "next/link";
+import {cookies} from "next/headers";
+
 import {MobiNav} from "@/components/MobiNav";
 import {MaxWithWrapper} from "@/components/MaxWithWrapper";
-import Link from "next/link";
 import {Icons} from "@/components/Icons";
-import {cookies} from "next/headers";
 import {buttonVariants} from "@/components/ui/button";
 import {Cart} from "@/components/Cart";
 import {UserAccountNav} from "@/components/UserAccountNav";
@@ -13,6 +13,7 @@ import {getServerSideUser} from "@/lib/payload-utils";
 export const Navbar = async () => {
     const nextCookies= cookies();
     // const {user}= await getServerSideUser(nextCookies);
+    const user=null;
 
     return (
         <div className="bg-white sticky z-50 top-0 inset-x-0 h-16">
@@ -32,58 +33,51 @@ export const Navbar = async () => {
                                 <NavItems/>
                             </div>
 
-                            {/*<div className="ml-auto flex items-center">*/}
-                            {/*    <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">*/}
-                            {/*        {user ? null : (*/}
-                            {/*            <Link*/}
-                            {/*                href="/sign-in"*/}
-                            {/*                className={buttonVariants({*/}
-                            {/*                    variant: 'ghost',*/}
-                            {/*                })}>*/}
-                            {/*                Sign in*/}
-                            {/*            </Link>*/}
-                            {/*        )}*/}
+                            <div className="ml-auto flex items-center">
+                                <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
+                                    {user ? null : (
+                                        <Link
+                                            href="/sign-in"
+                                            className={buttonVariants({variant: 'ghost',})}>
+                                            Sign in
+                                        </Link>
+                                    )}
 
-                            {/*        {user ? null : (*/}
-                            {/*            <span*/}
-                            {/*                className="h-6 w-px bg-gray-200"*/}
-                            {/*                aria-hidden="true"*/}
-                            {/*            />*/}
-                            {/*        )}*/}
+                                    {user ? null : (
+                                        <span className="h-6 w-px bg-gray-200" aria-hidden="true"/>
+                                    )}
 
-                            {/*        {user ? (*/}
-                            {/*            <UserAccountNav user={user}/>*/}
-                            {/*        ) : (*/}
-                            {/*            <Link*/}
-                            {/*                href="/sign-up"*/}
-                            {/*                className={buttonVariants({*/}
-                            {/*                    variant: 'ghost',*/}
-                            {/*                })}>*/}
-                            {/*                Create account*/}
-                            {/*            </Link>*/}
-                            {/*        )}*/}
+                                    {user ? (
+                                        <UserAccountNav user={user}/>
+                                    ) : (
+                                        <Link
+                                            href="/sign-up"
+                                            className={buttonVariants({variant: 'ghost',})}>
+                                            Create account
+                                        </Link>
+                                    )}
 
-                            {/*        {user ? (*/}
-                            {/*            <span*/}
-                            {/*                className="h-6 w-px bg-gray-200"*/}
-                            {/*                aria-hidden="true"*/}
-                            {/*            />*/}
-                            {/*        ) : null}*/}
+                                    {user ? (
+                                        <span
+                                            className="h-6 w-px bg-gray-200"
+                                            aria-hidden="true"
+                                        />
+                                    ) : null}
 
-                            {/*        {user ? null : (*/}
-                            {/*            <div className="flex lg:ml-6">*/}
-                            {/*              <span*/}
-                            {/*                  className="h-6 w-px bg-gray-200"*/}
-                            {/*                  aria-hidden="true"*/}
-                            {/*              />*/}
-                            {/*            </div>*/}
-                            {/*        )}*/}
+                                    {user ? null : (
+                                        <div className="flex lg:ml-6">
+                                          <span
+                                              className="h-6 w-px bg-gray-200"
+                                              aria-hidden="true"
+                                          />
+                                        </div>
+                                    )}
 
-                            {/*        <div className="ml-4 flow-root lg:ml-6">*/}
-                            {/*            <Cart/>*/}
-                            {/*        </div>*/}
-                            {/*    </div>*/}
-                            {/*</div>*/}
+                                    <div className="ml-4 flow-root lg:ml-6">
+                                        <Cart/>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </MaxWithWrapper>

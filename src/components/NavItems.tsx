@@ -26,15 +26,16 @@ export const NavItems = () => {
     return (
         <div className="flex gap-4 h-full" ref={navRef}>
             {
-                PRODUCT_CATEGORIES.map((category, i) => {
+                PRODUCT_CATEGORIES.map((category, index) => {
                     const handleOpen = () => {
-                        if (activeIndex === i) setActiveIndex(null)
-                        else setActiveIndex(i)
+                        if (activeIndex === index) setActiveIndex(null);
+
+                        else setActiveIndex(index);
                     }
 
                     const close = () => setActiveIndex(null);
 
-                    const isOpen = i === activeIndex;
+                    const isOpen = index === activeIndex;
 
                     return (
                         <NavItem category={category}

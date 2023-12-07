@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const UserAccountNav = () => {
+export const UserAccountNav = ({user}) => {
     return (
         <div>UserAccountNav</div>
     )

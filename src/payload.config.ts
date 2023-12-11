@@ -1,5 +1,6 @@
 import path from 'path';
 import dotenv from 'dotenv';
+
 import { buildConfig } from 'payload/config';
 import { webpackBundler } from '@payloadcms/bundler-webpack';
 import { mongooseAdapter } from '@payloadcms/db-mongodb';
@@ -12,7 +13,7 @@ import { ProductFiles } from './collections/ProductFile';
 import { Orders } from './collections/Orders';
 
 dotenv.config({
-    path: path.resolve(__dirname, '../.env'),
+    path: path.resolve(__dirname, '../../.env'),
 })
 
 export default buildConfig({
@@ -33,11 +34,12 @@ export default buildConfig({
     rateLimit: {
         max: 2000,
     },
-    editor: slateEditor({}),
     db: mongooseAdapter({
         url: process.env.MONGODB_URL!,
     }),
+    editor:slateEditor({}),
     typescript: {
-        outputFile: path.resolve(__dirname, 'payload-types.ts'),
+        outputFile: path.resolve(__dirname, './types/payload-types.ts'),
     },
+
 })
